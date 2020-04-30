@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
@@ -52,7 +53,13 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from: 'assets', to: 'assets' }
-    ])
+    ]),
+    new webpack.ProvidePlugin({
+      '$': 'jquery',
+      'jQuery': 'jquery',
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery'
+    })
   ],
   module: {
     rules: [
@@ -72,7 +79,7 @@ module.exports = {
         loader: 'url-loader'
       },
       {
-        test: /\.js$/,
+        test: /\.eslintrc$/,
         exclude: /node_modules/,
         use: ['eslint-loader']
       },
@@ -99,6 +106,20 @@ module.exports = {
           }
         ],
       },
+      {
+        test: /\.(eot|ttf|gif|woff)$/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 100000,
+            name: '[name].[ext]'
+          }
+        }
+      }
     ]
-  }
+  },
 }
