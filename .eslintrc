@@ -4,10 +4,6 @@
     "browser": true,
     "es6": true
   },
-  "globals": {
-    "jQuery": false,
-    "$": false
-  },
   "settings": {
     "import/resolver": {
       "node": {
@@ -28,5 +24,6 @@
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2017
-  }
+  },
+  "parser": "babel-eslint"
 }
