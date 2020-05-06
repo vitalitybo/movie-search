@@ -1,7 +1,7 @@
 $header-color: #787878;
 
 .header {
-  height: 100px;
+  height: 80px;
   background-color: $header-color;
   text-align: center;
 
@@ -15,21 +15,163 @@ $header-color: #787878;
   $width: 80%;
 
   width: calc(80% - 32px);
-  margin: 40px auto;
+  margin: 20px auto;
+
+  .search-bar__form {
+    display: flex;
+    height: 100%;
+  }
+
+  .search-bar__input-field {
+    width: 100%;
+    margin: 0;
+    height: 100%;
+  }
 
   .search-bar__submit-button {
-    position: absolute;
-    right: -114px;
-    top: 0px;
     height: 64px;
   }
 
 }
 
-.card {
-  width: 300px;
-  height: 500px;
+.cards {
+  width: 1320px;
+  height: 630px;
+
+  .card {
+    text-align: center;
+    width: 300px;
+    height: 590px;
+    
+    .card__image {
+      text-align: center;
+      height: 444px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .card__title {
+      display: inline-block;
+      margin: 5px 20px;
+      height: 2.3em;
+      overflow: hidden;
+      font-size: 1.5em;
+      font-weight: 600;
+    }
+
+    .card__rating,
+    .card__year {
+      text-align: center;
+      margin: 5px 0;
+    }
+
+    .card__year {
+      font-size: 1.6em;
+      font-weight: 700;
+    }
+
+    .card__rating {
+      position: relative;
+      left: -7px;
+      font-size: 1.6em;
+      font-weight: 700;
+
+      ::before {
+        content: '⭐️';
+        display: inline-block;
+      }
+    }
+
+  }
 }
 
-.cards {
+/* css loaders */
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.lds-hourglass {
+  display: inline-block;
+  position: relative;
+  width: 70px;
+  height: 70px;
+}
+.lds-hourglass:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 25px solid #fff;
+  border-color: #fcf transparent #fcf transparent;
+  animation: lds-hourglass 1.2s infinite;
+}
+@keyframes lds-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(1800deg);
+  }
+}
+
+/* End of css loaders */
+
+.load-status {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: 50px;
+  margin: 20px auto;
+
+  .load-status__translated-title {
+    position: absolute;
+    left: 30px;
+  }
 }

@@ -9,8 +9,7 @@
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-  <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/> -->
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Movie search</title>
 </head>
@@ -19,77 +18,68 @@
   <header class="header">
     <h1 class="movie-search">Movie Search</h1>
   </header>
-  <main>
-    <!-- <div class="search-bar">
-      <div class="search-bar__input-wrapper mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon">
-        <i class="material-icons mdc-text-field__icon">search</i>
-        <input class="mdc-text-field__input" id="text-field-hero-input">
-        <div class="mdc-notched-outline">
-          <div class="mdc-notched-outline__leading"></div>
-          <div class="mdc-notched-outline__notch">
-            <label for="text-field-hero-input" class="mdc-floating-label">Name</label>
-          </div>
-          <div class="mdc-notched-outline__trailing"></div>
-        </div>
-      </div>
-      <button class="mdc-button mdc-button--raised"> <span class="mdc-button__ripple"></span> Learn More</button>
-    </div> -->
-
-    
+  <main class="main">
     <nav class="search-bar">
       <div class="nav-wrapper">
-        <form class="search-bar__form">
-          <div class="input-field">
-            <input id="search" type="search" required>
+        <form name="searchMovie" class="search-bar__form" autocomplete="off">
+          <div class="search-bar__input-field input-field">
+            <input id="search" name="searchInput" type="search" required autofocus>
             <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-            <i class="material-icons">close</i>
+            <i class="material-icons search-bar__clear-input-button">close</i>
           </div>
           <button type="submit" class="search-bar__submit-button waves-effect waves-light btn-large">Search</button>
         </form>
       </div>
     </nav>
+    <section class="load-status">
+      <strong class="load-status__translated-title">Showing results for..</strong>
+      <div class="load-status_loader lds-hourglass" hidden></div>
+      <strong class="load-status__text"></strong>
+    </section>
+    <!-- Slider main container -->
+    <div class="cards swiper-container">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="card swiper-slide">
+          <h2 class="card__title">Schindler's List</h2>
+          <div class="card__image">
+            <img src="./assets/images/schindlers-list.jpg" alt="">
+          </div>
+          <div class="card__year"><span>1993</span></div>
+          <div class="card__rating"><span>8.9</span></div>
+        </div>
+        <div class="card swiper-slide">
+          <h2 class="card__title">La La Land</h2>
+          <div class="card__image">
+            <img src="./assets/images/la-la-land.jpg" alt="">
+          </div>
+          <div class="card__year"><span>2016</span></div>
+          <div class="card__rating"><span>8.0</span></div>
+        </div>
+        <div class="card swiper-slide">
+          <h2 class="card__title">Star Wars: Episode 1½: A Deadly Interception</h2>
+          <div class="card__image">
+            <img src="./assets/images/Star-wars.jpg" alt="">
+          </div>
+          <div class="card__year"><span>2007</span></div>
+          <div class="card__rating"><span>N/A</span></div>
+        </div>
+        <div class="card swiper-slide">
+          <h2 class="card__title">Inside Out</h2>
+          <div class="card__image">
+            <img src="./assets/images/inside-out.jpg" alt="">
+          </div>
+          <div class="card__year"><span>2015</span></div>
+          <div class="card__rating"><span>8.2</span></div>
+        </div>
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
 
-    <div class="cards">
-      <div class="card">
-        <div class="card-image">
-          <img src="images/sample-1.jpg">
-          <span class="card-title">Card Title</span>
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-        </div>
-        <div class="card-content">
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-image">
-          <img src="images/sample-1.jpg">
-          <span class="card-title">Card Title</span>
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-        </div>
-        <div class="card-content">
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-image">
-          <img src="images/sample-1.jpg">
-          <span class="card-title">Card Title</span>
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-        </div>
-        <div class="card-content">
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-image">
-          <img src="images/sample-1.jpg">
-          <span class="card-title">Card Title</span>
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-        </div>
-        <div class="card-content">
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-        </div>
-      </div>
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
 
   </main>
@@ -97,13 +87,12 @@
   <footer class="page-footer">
     <div class="footer-copyright">
       <div class="container">
-      © 2014 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        © 2014 Copyright Text
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
       </div>
     </div>
   </footer>
-  <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
-  <!-- <script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
+
 </body>
 
 </html>

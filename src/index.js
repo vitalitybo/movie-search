@@ -1,13 +1,13 @@
 import './styles/styles.scss';
 import 'normalize.css';
-import './extended-libs/slick/slick';
-import './extended-libs/slick/slick.scss';
-import './extended-libs/slick/slick-theme.scss';
+// import Swiper from 'swiper';
+import '../node_modules/swiper/css/swiper.css';
+import findMovie from './modules/findMovie';
+// import swiper from './modules/swiper';
 
-jQuery(document).ready(() => {
-  jQuery('.cards').slick({
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+document.forms[0].onsubmit = findMovie;
+
+document.querySelector('.search-bar__clear-input-button')
+  .addEventListener('click', () => {
+    document.forms[0].elements.searchInput.value = '';
   });
-});
