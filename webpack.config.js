@@ -29,7 +29,9 @@ const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: './index.js',
+  entry: {
+    main: ['@babel/polyfill', './index.js']
+  },
   output: {
     filename: filename('js'),
     path: path.resolve(__dirname, 'dist')
@@ -39,6 +41,7 @@ module.exports = {
     hot: isDev,
     contentBase: path.join(__dirname, 'dist')
   },
+  devtool: isDev ? 'source-map' : '',
   optimization: optimization(),
   plugins: [
     new HTMLWebpackPlugin({
@@ -52,7 +55,11 @@ module.exports = {
       filename: filename('css')
     }),
     new CopyWebpackPlugin([
-      { from: 'assets', to: 'assets' }
+      {
+        from: 'assets', 
+        to: 'assets',
+        test: /\.jpg$/,
+      }
     ]),
     new webpack.ProvidePlugin({
       '$': 'jquery',
@@ -79,7 +86,19 @@ module.exports = {
         loader: 'url-loader'
       },
       {
-        test: /\.eslintrc$/,
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env'
+            ]
+          }
+        }
+      },
+      {
+        test: /\.js$/,
         exclude: /node_modules/,
         use: ['eslint-loader']
       },
