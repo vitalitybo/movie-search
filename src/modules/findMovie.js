@@ -3,11 +3,15 @@ import translate from './yandexTranslate';
 
 export default async function findMovie(event) {
   event.preventDefault();
+  const translatedTitle = document.querySelector('.load-status__translated-title');
+  translatedTitle.innerHTML = '';
 
   const { searchInput } = document.forms[0].elements;
   let requestedTitle = searchInput.value;
   if (requestedTitle.match(/[0-9а-яА-Я- ]+/)) {
     requestedTitle = await translate(requestedTitle);
+
+    translatedTitle.innerHTML = `Showing results for «${requestedTitle}»`;
   }
 
   const apiKey = 'apikey=68547faa';
@@ -31,11 +35,10 @@ export default async function findMovie(event) {
   };
   //
 
-  async function getMoviesData(moviesArray, removeSlides = true) {
+  async function getMoviesData(moviesArray, newRequest = true) {
     if (!moviesArray) return;
-    // const array = moviesArray.slice(0, 4);
+
     const slidesArray = [];
-    // await moviesArray.forEach(
 
     async function getData(movie) {
       const search = `${urlBase}i=${movie.imdbID}`;
@@ -46,15 +49,20 @@ export default async function findMovie(event) {
           slidesArray.push(slideString(movieObj.Title, movieObj.Year,
             movieObj.imdbRating, movieObj.Poster));
         });
-      // });
     }
     const promises = moviesArray.map(getData);
     await Promise.all(promises)
       .then(() => {
-        if (removeSlides) {
+        // if (removeListeners) {
+        //   swiper.off('reachEnd');
+        // }
+
+        if (newRequest) {
+          // swiper.off('reachEnd', loadNextPageHandler);
           swiper.removeAllSlides();
           swiper.slideTo(0);
         }
+
         swiper.appendSlide(slidesArray);
         const cssLoader = document.querySelector('.load-status_loader');
         cssLoader.hidden = true;
@@ -62,7 +70,7 @@ export default async function findMovie(event) {
       });
   }
 
-  async function getMoviesList(movieName, page = 1) {
+  async function getMoviesList(movieName, page = 1, removeListeners = true) {
     const searchList = `${urlBase}s=${movieName}&page=${page}`;
     const errorTextContainer = document.querySelector('.load-status__text');
     errorTextContainer.innerHTML = '';
@@ -70,17 +78,20 @@ export default async function findMovie(event) {
     const cssLoader = document.querySelector('.load-status_loader');
     cssLoader.hidden = false;
 
+    const moviesPerPage = 10;
+
     return fetch(searchList)
       .then((res) => res.json())
       .then((movieObj) => {
         async function loadNextPageHandler() {
-          if (movieObj.Search.length < 10
-            || ((page + 1) * 10) >= movieObj.totalResults) {
+          const reachEnd = ((page + 1) * moviesPerPage) >= movieObj.totalResults;
+
+          if (movieObj.Search.length < moviesPerPage || reachEnd) {
             swiper.off('reachEnd', loadNextPageHandler);
           }
 
           const moviesArray = await getMoviesList(movieName, page += 1);
-          await getMoviesData(moviesArray, false);
+          await getMoviesData(moviesArray, false, loadNextPageHandler);
         }
 
         if (movieObj.Response === 'False') {
@@ -90,7 +101,11 @@ export default async function findMovie(event) {
         }
         errorTextContainer.innerHTML = '';
 
-        if (movieObj.Search.length === 10 && page === 1) {
+        if (removeListeners) {
+          swiper.off('reachEnd');
+        }
+
+        if (movieObj.Search.length === moviesPerPage && page === 1) {
           swiper.on('reachEnd', loadNextPageHandler);
         }
 
