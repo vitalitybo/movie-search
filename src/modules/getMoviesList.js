@@ -1,5 +1,5 @@
 export default async function getMoviesList(movieName, page = 1) {
-  const OMDBAPIKey = 'apikey=68547fa';
+  const OMDBAPIKey = 'apikey=68547faa';
   const urlBase = `http://www.omdbapi.com/?${OMDBAPIKey}&`;
 
   const searchList = `${urlBase}s=${movieName}&page=${page}`;
@@ -12,11 +12,25 @@ export default async function getMoviesList(movieName, page = 1) {
   // const moviesPerPage = 10;
 
   return fetch(searchList)
-    .then((res) => res.json())
+    .then((res) => {
+      if (res.status >= 400 && res.status <= 599) {
+        throw new Error(`${res.status}:${res.statusText}`);
+      }
+      return res;
+    })
+    .then((res) => {
+      console.log(res.ok, res.status);
+      return res.json();
+    }, (err) => {
+      console.log(err.message);
+      err.Response = 'False';
+      err.Error = err.message;
+      return err;
+    })
     .then((movieObj) => movieObj);
   // .catch((err) => alert(err.message));
   // async function loadNextPageHandler() {
-  //   if (swiper.slides.length === 0) swiper.off('reachEnd', loadNextPageHandler);
+  //   if (swiper.slides.length === 0) swiper.off('reachEnd', loadNextPageHandler);.
   //   const reachEnd = ((page + 1) * moviesPerPage) >= movieObj.totalResults;
 
   //   if (movieObj.Search.length < moviesPerPage || reachEnd) {
