@@ -1,8 +1,6 @@
 import translate from './yandexTranslate';
 import searchAndRenderSlides from './searchAndRenderSlides';
-// import prepareSlidesData from './prepareSlidesData';
-// import getMoviesList from './getMoviesList';
-// import renderSlides from './renderSlides';
+
 
 export default async function findMovie(event) {
   event.preventDefault();
@@ -18,7 +16,4 @@ export default async function findMovie(event) {
   }
 
   searchAndRenderSlides(requestedTitle);
-  // const moviesList = await getMoviesList(requestedTitle);
-  // const slidesArray = await prepareSlidesData(moviesList);
-  // renderSlides(slidesArray, true, moviesList, requestedTitle);
 }

@@ -39,9 +39,6 @@ export default async function searchAndRenderSlides(requestedTitle, newRequest =
     }
 
     searchAndRenderSlides(requestedTitle, false, currentPage += 1);
-    // const movsArray = await getMoviesList(movieName, page += 1);
-    // const slidsArray = await prepareSlidesData(movsArray);
-    // renderSlides(slidsArray, false, movieObj, movieName);
   }
 
   if (newRequest) {

@@ -29,7 +29,6 @@ const swiper = new Swiper('.swiper-container', {
   },
   lazy: {
     loadPrevNext: true,
-    // loadOnTransitionStart: true,
     loadPrevNextAmount: 1,
   },
   centerInsufficientSlides: true,
