@@ -11,7 +11,7 @@ export default async function findMovie(event) {
 
   const { searchInput } = document.forms[0].elements;
   let requestedTitle = searchInput.value;
-  if (requestedTitle.match(/[0-9а-яА-Я- ]+/)) {
+  if (requestedTitle.match(/[0-9а-яА-Я-]+/)) {
     requestedTitle = await translate(requestedTitle);
 
     translatedTitle.innerHTML = `Showing results for «${requestedTitle}»`;

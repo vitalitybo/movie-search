@@ -17,7 +17,7 @@ export default async function prepareSlidesData(moviesObj) {
       .then((res) => res.json())
       .then((movieObj) => {
         slidesArray.push(slideString(movieObj.Title, movieObj.Year,
-          movieObj.imdbRating, movieObj.Poster));
+          movieObj.imdbRating, movieObj.Poster, movie.imdbID));
       });
   }
   const promises = moviesArray.map(getData);

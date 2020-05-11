@@ -19,10 +19,8 @@ export default async function getMoviesList(movieName, page = 1) {
       return res;
     })
     .then((res) => {
-      console.log(res.ok, res.status);
       return res.json();
     }, (err) => {
-      console.log(err.message);
       err.Response = 'False';
       err.Error = err.message;
       return err;

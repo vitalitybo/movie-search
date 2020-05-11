@@ -1,28 +1,35 @@
+$YELLOW: #ffe440;
+$VIOLET: #8106a9;
+$DARK-VIOLET: #54026e;
+$CORAL: #d60062;
+
+// @media all and (min-width: 768px) {
+body {
+  min-width: 320px;
+}
+
 .header {
-  $header-bg-color: #8106A9;
   $header-height: 80px;
-  $header-text-color: #FFE440;
 
   height: $header-height;
-  background-color: $header-bg-color;
+  background-color: $VIOLET;
   text-align: center;
 
   .movie-search {
     line-height: $header-height;
     margin: 0;
-    color: $header-text-color;
+    color: $YELLOW;
     font-weight: 700;
     font-size: 3em;
   }
 }
 
 .search-bar {
-  $search-bar-color: #54026E;
   $width: 80%;
 
   width: calc(80% - 32px);
   margin: 20px auto;
-  background-color: $search-bar-color;
+  background-color: $DARK-VIOLET;
 
   .search-bar__form {
     display: flex;
@@ -35,25 +42,38 @@
     height: 100%;
 
     .search-bar__input {
-      color: #FFE440;
+      color: $YELLOW;
+
+      &:focus {
+        color: $DARK-VIOLET;
+      }
     }
   }
 
   .search-bar__submit-button {
     height: 64px;
-  }
+    color: $DARK-VIOLET;
+    font-weight: 500;
+    background-color: #ffe440;
+    box-shadow: 0 0px 1px 0 #fff;
 
+    &:hover {
+      color: $YELLOW;
+      background-color: $DARK-VIOLET;
+      border-left: 1px solid $YELLOW;
+    }
+  }
 }
 
 .cards {
-  width: 1320px;
+  width: 80%;
   height: 630px;
 
   .card {
     text-align: center;
     width: 300px;
     height: 590px;
-    
+
     .card__image {
       text-align: center;
       height: 444px;
@@ -63,6 +83,10 @@
         width: 100%;
         height: auto;
       }
+    }
+
+    .card__videogalery-link {
+      display: block;
     }
 
     .card__title {
@@ -92,11 +116,10 @@
       font-weight: 700;
 
       ::before {
-        content: '⭐️';
+        content: "⭐️";
         display: inline-block;
       }
     }
-
   }
 }
 
@@ -138,10 +161,10 @@
   }
 }
 
-
 .lds-hourglass {
   display: inline-block;
   position: relative;
+  top: -20px;
   width: 70px;
   height: 70px;
 }
@@ -179,15 +202,99 @@
   justify-content: center;
   width: 80%;
   height: 50px;
-  margin: 20px auto;
+  margin: 25px auto;
 
   .load-status__translated-title {
     position: absolute;
-    left: 30px;
+    top: 45px;
+    left: auto;
+    right: auto;
     font-size: 1.3em;
+  }
+
+  .load-status__text {
+    color: $CORAL;
   }
 }
 
 .page-footer {
-  background-color: #8106A9;
+  background-color: #8106a9;
+
+  .page-footer__github-link {
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      left: -38px;
+      top: -10px;
+      background-image: url(../assets/images/GitHub-Mark-32px.png);
+      background-repeat: no-repeat;
+    }
+  }
+}
+// }
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .search-bar {
+    width: 100%;
+    height: 100px;
+
+    .nav-wrapper {
+      height: 50%;
+    }
+
+    .search-bar__form {
+      display: block;
+
+      .search-bar__submit-button {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        height: 50px;
+        border-top: 1px solid $YELLOW;
+        border-left: none;
+      }
+    }
+  }
+
+  .cards {
+    width: 100%;
+  }
+
+  .load-status {
+    .load-status__translated-title {
+      top: 45px;
+      left: auto;
+      right: auto;
+      font-size: 1.1em;
+    }
+  }
+}
+
+@media all and (min-width: 605px) and (max-width: 910px) {
+  .cards {
+    width: 605px;
+  }
+}
+
+@media all and (min-width: 910px) and (max-width: 1210px) {
+  .cards {
+    width: 910px;
+  }
+}
+
+@media all and (min-width: 1210px) and (max-width: 1610px) {
+  .cards {
+    width: 1210px;
+  }
+}
+
+@media all and (min-width: 1610px) {
+  .cards {
+    width: 1290px;
+  }
 }

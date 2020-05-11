@@ -15,7 +15,13 @@ export default async function searchAndRenderSlides(requestedTitle, newRequest =
 
   if (moviesListObj.Response === 'False') {
     cssLoader.hidden = true;
-    errorTextContainer.innerHTML = `Error: ${moviesListObj.Error}`;
+
+    if (moviesListObj.Error === 'Movie not found!') {
+      errorTextContainer.innerHTML = `No results for «${requestedTitle}»`;
+    } else {
+      errorTextContainer.innerHTML = `Error: ${moviesListObj.Error}`;
+    }
+
     return undefined;
   }
 
@@ -29,6 +35,7 @@ export default async function searchAndRenderSlides(requestedTitle, newRequest =
 
     if (moviesListObj.Search.length < moviesPerPage || reachEnd) {
       swiper.off('reachEnd', loadNextPageHandler);
+      return;
     }
 
     searchAndRenderSlides(requestedTitle, false, currentPage += 1);

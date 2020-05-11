@@ -1,9 +1,9 @@
-const slideString = (title, year, rating, posterURL) => {
+const slideString = (title, year, rating, posterURL, imdbID) => {
   if (posterURL === 'N/A') posterURL = '/../assets/images/no-poster-available.jpg';
 
   return `
     <div class="card swiper-slide">
-      <h2 class="card__title">${title}</h2>
+      <a class="card__videogalery-link" href="https://www.imdb.com/title/${imdbID}/videogallery/"><h2 class="card__title">${title}</h2></a>
       <div class="card__image">
         <img data-src="${posterURL}" alt="${title}" class="swiper-lazy">
         <div class="swiper-lazy-preloader">

@@ -3,22 +3,18 @@ import Swiper from 'swiper';
 
 const swiper = new Swiper('.swiper-container', {
   init: true,
+  slidesPerView: 'auto',
   updateOnImagesReady: true,
   breakpoints: {
     320: {
-      slidesPerView: 1,
-      spaceBetween: 20,
+      centeredSlides: true,
+      spaceBetween: 300,
     },
-    // when window width is >= 480px
-    655: {
-      slidesPerView: 2,
+    605: {
+      centeredSlides: false,
+      spaceBetween: 5,
     },
-    1000: {
-      slidesPerView: 3,
-    },
-    // when window width is >= 640px
-    1350: {
-      slidesPerView: 4,
+    1610: {
       spaceBetween: 30,
     },
   },
@@ -37,6 +33,8 @@ const swiper = new Swiper('.swiper-container', {
     loadPrevNextAmount: 1,
   },
   centerInsufficientSlides: true,
+  watchSlidesVisibility: true,
+  grabCursor: true,
 });
 
 export default swiper;
