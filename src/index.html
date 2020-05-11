@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Movie search</title>
+</head>
+
+<body>
+  <header class="header">
+    <h1 class="movie-search">Movie Search</h1>
+  </header>
+  <main class="main">
+    <nav class="search-bar">
+      <div class="nav-wrapper">
+        <form name="searchMovie" class="search-bar__form" autocomplete="off">
+          <div class="search-bar__input-field-wrapper input-field">
+            <input id="search" name="searchInput" type="search" class="search-bar__input" placeholder="Search movie" required autofocus>
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons search-bar__clear-input-button">close</i>
+          </div>
+          <button type="submit" class="search-bar__submit-button waves-effect waves-light btn-large">Search</button>
+        </form>
+      </div>
+    </nav>
+    <section class="load-status">
+      <strong class="load-status__translated-title"></strong>
+      <div class="load-status_loader lds-hourglass" hidden></div>
+      <strong class="load-status__text"></strong>
+    </section>
+    <!-- Slider main container -->
+    <div class="cards swiper-container">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="card swiper-slide">
+          <h2 class="card__title">Schindler's List</h2>
+          <div class="card__image">
+            <img src="./assets/images/schindlers-list.jpg" alt="">
+          </div>
+          <div class="card__year"><span>1993</span></div>
+          <div class="card__rating"><span>8.9</span></div>
+        </div>
+        <div class="card swiper-slide">
+          <h2 class="card__title">La La Land</h2>
+          <div class="card__image">
+            <img src="./assets/images/la-la-land.jpg" alt="">
+          </div>
+          <div class="card__year"><span>2016</span></div>
+          <div class="card__rating"><span>8.0</span></div>
+        </div>
+        <div class="card swiper-slide">
+          <h2 class="card__title">Star Wars: Episode 1½: A Deadly Interception</h2>
+          <div class="card__image">
+            <img src="./assets/images/Star-wars.jpg" alt="">
+          </div>
+          <div class="card__year"><span>2007</span></div>
+          <div class="card__rating"><span>N/A</span></div>
+        </div>
+        <div class="card swiper-slide">
+          <h2 class="card__title">Inside Out</h2>
+          <div class="card__image">
+            <img src="./assets/images/inside-out.jpg" alt="">
+          </div>
+          <div class="card__year"><span>2015</span></div>
+          <div class="card__rating"><span>8.2</span></div>
+        </div>
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="footer-copyright">
+      <div class="container">
+        <strong>RS School 2020q1</strong>
+        <a class="page-footer__github-link grey-text text-lighten-4 right" href="https://github.com/vitalitybo"><strong>Vitalitybo</strong></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
