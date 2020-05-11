@@ -11,12 +11,11 @@ export default async function getMoviesList(movieName, page = 1) {
       }
       return res;
     })
-    .then((res) => {
-      return res.json();
-    }, (err) => {
-      err.Response = 'False';
-      err.Error = err.message;
-      return err;
-    })
+    .then((res) => res.json(),
+      (err) => {
+        err.Response = 'False';
+        err.Error = err.message;
+        return err;
+      })
     .then((movieObj) => movieObj);
 }
